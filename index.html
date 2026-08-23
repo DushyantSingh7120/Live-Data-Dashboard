@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NASA Astronomy Picture of the Day</title>
+  <meta name="description" content="NASA's Astronomy Picture of the Day — explore the cosmos one image at a time.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <span class="nasa-badge">NASA</span>
+      <span class="header-label">Astronomy Picture of the Day</span>
+    </div>
+  </header>
+
+  <main class="main">
+    <div id="apod-card" class="card" aria-live="polite">
+
+      <div id="skeleton" class="skeleton-group">
+        <div class="skeleton skeleton-media"></div>
+        <div class="skeleton skeleton-title"></div>
+        <div class="skeleton skeleton-date"></div>
+        <div class="skeleton skeleton-text"></div>
+        <div class="skeleton skeleton-text short"></div>
+      </div>
+
+      <div id="apod-content" class="apod-content hidden">
+        <div id="media-wrapper" class="media-wrapper"></div>
+        <div class="card-body">
+          <div class="meta-row">
+            <h1 id="apod-title" class="apod-title"></h1>
+            <time id="apod-date" class="apod-date"></time>
+          </div>
+          <p id="apod-explanation" class="apod-explanation"></p>
+          <p id="apod-copyright" class="apod-copyright"></p>
+        </div>
+      </div>
+
+      <div id="apod-error" class="error-state hidden">
+        <span class="error-icon">⚠️</span>
+        <p>Failed to load today's picture. Please try again.</p>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
