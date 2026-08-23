@@ -1,0 +1,2 @@
+# Secret config — contains real API key, never commit this
+config.js

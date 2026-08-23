@@ -1,5 +1,5 @@
-const API_KEY = 'muhuT1puZakkkuz6T5wxlV9PVrXzThXyNWiunLAb';
-const APOD_URL = `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`;
+// NASA_API_KEY is loaded from config.js (gitignored)
+const APOD_URL = `https://api.nasa.gov/planetary/apod?api_key=${NASA_API_KEY}`;
 
 async function fetchAPOD() {
   try {
