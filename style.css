@@ -63,11 +63,27 @@ body {
   color: var(--text-secondary);
 }
 
+.github-link {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  color: var(--text-muted);
+  transition: color var(--transition), transform var(--transition);
+  text-decoration: none;
+}
+
+.github-link:hover {
+  color: var(--text-primary);
+  transform: scale(1.12);
+}
+
+
 /* ── Main layout ── */
 .main {
   padding: 48px 24px 80px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* ── Card ── */
@@ -145,7 +161,9 @@ body {
   object-fit: cover;
   display: block;
   transition: opacity 0.5s ease;
+  cursor: zoom-in; /* reinforced by JS for images only */
 }
+
 
 .apod-iframe {
   width: 100%;
@@ -223,6 +241,131 @@ body {
   display: none !important;
 }
 
+/* ── Lightbox ── */
+@keyframes lb-in {
+  from { opacity: 0; transform: scale(0.94); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: lb-in 0.22s ease-out;
+}
+
+.lightbox-img {
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.8);
+  animation: lb-in 0.22s ease-out;
+}
+
+.lightbox-close {
+  position: fixed;
+  top: 20px;
+  right: 24px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--text-primary);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition), transform var(--transition);
+  z-index: 1001;
+}
+
+.lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+
+
+/* ── Date navigation bar ── */
+.date-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 820px;
+  width: 100%;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.nav-btn {
+  background: var(--surface-2);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 9px 16px;
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), opacity var(--transition);
+  white-space: nowrap;
+}
+
+.nav-btn:hover:not(:disabled) {
+  background: #22263a;
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+.nav-btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.nav-btn--accent {
+  background: var(--accent-glow);
+  border-color: rgba(79, 142, 247, 0.35);
+  color: var(--accent);
+}
+
+.nav-btn--accent:hover:not(:disabled) {
+  background: rgba(79, 142, 247, 0.2);
+}
+
+.nav-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+#date-picker {
+  background: var(--surface-2);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-family: var(--font);
+  font-size: 13px;
+  cursor: pointer;
+  outline: none;
+  transition: border-color var(--transition);
+  /* Remove browser default calendar icon tint on some platforms */
+  color-scheme: dark;
+}
+
+#date-picker:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
 /* ── Responsive ── */
 @media (max-width: 600px) {
   .main {
@@ -244,5 +387,15 @@ body {
   .meta-row {
     flex-direction: column;
     gap: 8px;
+  }
+
+  .date-nav {
+    gap: 8px;
+  }
+
+  .nav-btn,
+  #date-picker {
+    font-size: 12px;
+    padding: 8px 12px;
   }
 }
