@@ -1,5 +1,5 @@
-// NASA_API_KEY is loaded from config.js (gitignored)
-const BASE_URL = `https://api.nasa.gov/planetary/apod?api_key=${NASA_API_KEY}`;
+// NASA_API_KEY is handled by serverless function on Vercel
+const BASE_URL = `/api/apod`;
 const APOD_START = '1995-06-16';
 
 // ── Theme Toggle ───────────────────────────────────────────────────────────────
@@ -38,7 +38,7 @@ function todayStr() {
 
 async function fetchAPOD(date) {
   try {
-    const url = date ? `${BASE_URL}&date=${date}` : BASE_URL;
+    const url = date ? `${BASE_URL}?date=${date}` : BASE_URL;
     const response = await fetch(url);
     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
     const data = await response.json();
@@ -445,7 +445,7 @@ function navigateTo(dateStr) {
   const _origFetch = window.fetch;
   window.fetch = async function (...args) {
     const res = await _origFetch.apply(this, args);
-    if (typeof args[0] === 'string' && args[0].includes('planetary/apod')) {
+    if (typeof args[0] === 'string' && args[0].includes('/api/apod')) {
       const clone = res.clone();
       clone.json().then(data => {
         window._apodHdurl = data.media_type === 'image' ? (data.hdurl || data.url) : null;
