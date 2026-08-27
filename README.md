@@ -6,6 +6,14 @@ A sleek, space-mission-inspired web dashboard for exploring daily cosmic photogr
 
 ---
 
+### Dark Mode
+![Dark Mode](screenshots/screenshot-dark.png)
+
+### Light Mode
+![Light Mode](screenshots/screenshot-light.png)
+
+---
+
 ## ✨ Features
 
 - **Live NASA APOD Data**: Real-time integration with NASA's Astronomy Picture of the Day API, rendering high-resolution imagery and video embeds with full scientific explanations and metadata.
